@@ -1,7 +1,7 @@
-from tests.test_processing import test_state, true_or_false
+from tests.test_processing import true_or_false, user_state, user_data
 
 
-def filter_by_state(data: list, state=test_state) -> list:
+def filter_by_state(data: list, state="EXECUTED") -> list:
     """
     Функция принимает список словарей и возвращает новый список словарей,
     содержащий только те словари, у которых ключь 'state'
@@ -27,5 +27,5 @@ def sort_by_date(data: list, sort_by=true_or_false):
     return sorted_data
 
 
-#print(filter_by_state(user_data))
-#print(sort_by_date(user_data))
+print(filter_by_state(user_data, user_state))
+print(sort_by_date(user_data))

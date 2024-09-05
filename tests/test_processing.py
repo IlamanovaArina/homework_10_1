@@ -8,5 +8,4 @@ user_data = [
 true_or_false = True
 #true_or_false = False
 
-test_state = 'EXECUTED'
-#test_state = 'CANCELED'
+user_state = 'CANCELED'
