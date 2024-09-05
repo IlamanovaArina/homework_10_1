@@ -1,4 +1,7 @@
-def filter_by_state(data: list, state: str = "EXECUTED") -> list:
+from tests.test_processing import true_or_false, user_state, user_data
+
+
+def filter_by_state(data: list, state="EXECUTED") -> list:
     """
     Функция принимает список словарей и возвращает новый список словарей,
     содержащий только те словари, у которых ключь 'state'
