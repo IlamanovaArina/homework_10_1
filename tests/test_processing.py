@@ -6,6 +6,5 @@ user_data = [
 ]
 
 true_or_false = True
-#true_or_false = False
 
 user_state = 'CANCELED'

@@ -1,7 +1,7 @@
 from tests.test_processing import true_or_false, user_state, user_data
 
 
-def filter_by_state(data: list, state="EXECUTED") -> list:
+def filter_by_state(data: list, state: str = "EXECUTED") -> list:
     """
     Функция принимает список словарей и возвращает новый список словарей,
     содержащий только те словари, у которых ключь 'state'
@@ -16,7 +16,7 @@ def filter_by_state(data: list, state="EXECUTED") -> list:
     return new_data
 
 
-def sort_by_date(data: list, sort_by=true_or_false):
+def sort_by_date(data: list, sort_by: bool = False):
     """
     Функция принимает список словарей и необязательный параметр,
     задающий порядок сортировки и возвращает новый список,
@@ -27,5 +27,5 @@ def sort_by_date(data: list, sort_by=true_or_false):
     return sorted_data
 
 
-print(filter_by_state(user_data, user_state))
-print(sort_by_date(user_data))
+# print(filter_by_state(user_data, user_state))
+# print(sort_by_date(user_data, true_or_false))
