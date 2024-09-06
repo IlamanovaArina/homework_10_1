@@ -16,7 +16,7 @@ def filter_by_state(data: list, state="EXECUTED") -> list:
     return new_data
 
 
-def sort_by_date(data: list, sort_by: bool = False):
+def sort_by_date(data: list, sort_by=true_or_false):
     """
     Функция принимает список словарей и необязательный параметр,
     задающий порядок сортировки и возвращает новый список,
