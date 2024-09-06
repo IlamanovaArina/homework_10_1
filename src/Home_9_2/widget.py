@@ -2,6 +2,7 @@ from typing import Union
 from src.Home_9_1.masks import get_mask_account, get_mask_card_number
 from src.data import acceptable_data, numbers
 import pytest
+from datetime import datetime
 
 def mask_account_card(bank_card):
     """
@@ -48,6 +49,21 @@ def mask_account_card(bank_card):
 def get_date(dat):
     """
     Функция возвращающая "ДД.ММ.ГГГГ" из строки
-    такого образца"2024-03-11T02:26:18.671407"
+    такого образца "2024-03-11T02:26:18.671407"
     """
-    return f"{dat[8:10]}.{dat[5:7]}.{dat[0:4]} "
+    if dat == "":
+        return ""
+
+    if "T" in dat:
+        string = "".join(dat.split("T")[0])
+        year, month, day = string.split("-")
+        return f"{day}.{month}.{year}"
+    else:
+        a, month, c = dat.split("-")
+        len_a = len(a)
+        len_c= len(c)
+
+        if len_a == 4:
+            return f"{c}.{month}.{a}"
+        elif len_c == 4:
+            return f"{a}.{month}.{c}"
