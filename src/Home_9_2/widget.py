@@ -4,7 +4,7 @@ from src.data import acceptable_data, numbers
 from src.Home_9_1.masks import get_mask_account, get_mask_card_number
 
 
-def mask_account_card(bank_card):
+def mask_account_card(bank_card: str) -> str:
     """
     Функция которая принимает данные карты или счёта
     использует импортируемую функцию
@@ -46,7 +46,7 @@ def mask_account_card(bank_card):
         return ""
 
 
-def get_date(dat):
+def get_date(dat: str) -> str:
     """
     Функция возвращающая "ДД.ММ.ГГГГ" из строки
     такого образца "2024-03-11T02:26:18.671407"

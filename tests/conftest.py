@@ -1,6 +1,8 @@
 import pytest
-from tests.test_widget import test_widget_mask_account_card, test_widget_get_date
+
 from tests.test_masks import test_masks
+from tests.test_widget import (test_widget_get_date,
+                               test_widget_mask_account_card)
 
 
 @pytest.fixture
