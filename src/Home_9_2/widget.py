@@ -1,8 +1,8 @@
 from typing import Union
-from src.Home_9_1.masks import get_mask_account, get_mask_card_number
+
 from src.data import acceptable_data, numbers
-import pytest
-from datetime import datetime
+from src.Home_9_1.masks import get_mask_account, get_mask_card_number
+
 
 def mask_account_card(bank_card):
     """
@@ -12,10 +12,10 @@ def mask_account_card(bank_card):
     маскированный номер карты/счёта
     """
     account_or_number = []
-    list_characters:Union[list] = []
+    list_characters: Union[list] = []
     entered_data = []
 
-    if not hasattr(bank_card, '__iter__'):
+    if not hasattr(bank_card, "__iter__"):
         return ""
     if bank_card == [] or bank_card == {} or bank_card == ():
         return ""
@@ -61,7 +61,7 @@ def get_date(dat):
     else:
         a, month, c = dat.split("-")
         len_a = len(a)
-        len_c= len(c)
+        len_c = len(c)
 
         if len_a == 4:
             return f"{c}.{month}.{a}"

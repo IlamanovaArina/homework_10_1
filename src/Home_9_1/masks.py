@@ -1,5 +1,7 @@
 from typing import Union
+
 from src.data import numbers
+
 
 def get_mask_card_number(card_number: Union[str]) -> Union[str]:
     """
@@ -29,8 +31,8 @@ def get_mask_card_number(card_number: Union[str]) -> Union[str]:
 
 def get_mask_account(card_number: Union[str]) -> Union[str]:
     """
-     Функция которая принимает номер каты
-     и возвращает маску ввиде две '*' и 4 цифры
+    Функция которая принимает номер каты
+    и возвращает маску ввиде две '*' и 4 цифры
     """
     list_digit: Union[list] = []
     intake = ""
@@ -47,7 +49,7 @@ def get_mask_account(card_number: Union[str]) -> Union[str]:
             intake = "yes"
 
     if intake == "yes":
-        list_digit[:-4] = '**'
+        list_digit[:-4] = "**"
     else:
         return "Ошибка"
 
