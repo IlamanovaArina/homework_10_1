@@ -24,8 +24,8 @@ def sort_by_date(data: list, sort_by: bool = False):
         valid_data = [d for d in data if "date" in d and
                       isinstance(d["date"], str)]
         try:
-            date_sorted = sorted(valid_data,
-                                 key=lambda d: d["date"], reverse=sort_by)
+            date_sorted = sorted(valid_data, key=lambda d: d["date"],
+                                 reverse=sort_by)
         except ValueError:
             print("Ошибка: некорректный формат даты")
     else:
