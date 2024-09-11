@@ -81,5 +81,15 @@ def list_transactions():
         "from": "Счет 75106830613657916953",
         "to": "Счет 11776614605963066703",
     }
-]
+    ]
     return transaction
+
+
+@pytest.fixture
+def start():
+    return "0000 0000 0000 0001"
+
+
+@pytest.fixture
+def stop():
+    return "9999 9999 9999 9999"
