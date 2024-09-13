@@ -1,5 +1,5 @@
 # Сортировка данных
-## Описание
+## Описание основных функций
 ### Функции для сортировки данных
 Данное прилоение сортирует данные, такие как state и date.
 Может выполнить сортировку по state, 
@@ -79,7 +79,8 @@ dat = "2024-03-11T02:26:18.671407"
 
 ### Фнкция фильтрует транзакции по заданной валюте
 
-```def filter_by_currency(list_transactions, currency):
+```
+def filter_by_currency(list_transactions, currency):
     pass
     
 list_transactions = [
@@ -114,7 +115,8 @@ list_transactions = [
 
 ### Функция выводящяя банковские операции
 
-```def transaction_descriptions(list_transactions):
+```
+def transaction_descriptions(list_transactions):
     pass
 
 list_transactions = [
@@ -139,7 +141,8 @@ list_transactions = [
 Функция может сгенерировать номера карт в заданном диапазоне 
 от 0000 0000 0000 0001 до 9999 9999 9999 9999
 
-```def card_number_generator(start, stop):
+```card_number_generator
+def card_number_generator(start, stop):
     pass
     
 start = "0000 0000 0000 0001"
@@ -148,21 +151,111 @@ stop = "0000 0000 0000 0002"
 >>>"0000 0000 0000 0001"
 ```
 
+## Декораторы
+
+### Декоратор `log`
+
+Декоратор `log` фиксирует выполнение кода, 
+в командную строку если не указан файл для 
+сохранения данных, выводит информацию об ошибках, если они есть
+и исподьзуемых переменных
+Простой пример использования:
+
+
+```@log()
+@log(filename="mylog.txt")
+def my_function(x, y):
+    return x + y
+
+my_function(1, 2)
+
+>>> "my_function ok"
+```
+
 
 ## Тестирование
 К каждой функции добавленны тесты с использованием 
 фикстуры и параметризации
 
+### `test_masks`
 Пример теста к маскировке даннных по карте:
 
 ```test_masks
 def test_masks():
     assert get_mask_card_number("7000792289606361") == "7000 79** **** 6361"
-    assert get_mask_card_number("7000") == "7000"
-    assert get_mask_card_number("7000123456789123456789") == "7000 12** **** 9123 4567 89"
-    assert get_mask_card_number("пробуем буквы") == ""
-    assert get_mask_card_number("") == ""
-    assert get_mask_card_number(7000792289606361) == ""
     with pytest.raises(TypeError):
         assert get_mask_card_number() == ""
+```
+
+### `test_filter_by_state`
+Тест сортировки данных в виде списка словарей по ключу "state"
+
+```test_filter_by_state
+@pytest.mark.parametrize(
+    "data, state, expected_output", [...])
+def test_filter_by_state(data, state, expected_output):
+    assert filter_by_state(data, state) == expected_output
+```
+### `test_sort_by_date`
+тест сортировки данных в виде списка словарей по дате,
+с указанием по возростанию или по убыванию 
+
+```test_sort_by_date
+@pytest.mark.parametrize(
+    "data, sort_by, expected_output", [...]
+def test_sort_by_date(data, sort_by, expected_output):
+    assert sort_by_date(data, sort_by) == expected_output
+```
+
+### `test_widget_mask_account_card`
+Тест маскировки данных карты и счёта
+```
+def test_widget_mask_account_card():
+    assert (
+        mask_account_card("Visa Platinum 7000792289606361")
+        == "Visa Platinum 7000 79** **** 6361"
+    )
+    assert mask_account_card("Счет 73654108430135874305") == "Счет **4305"
+    assert mask_account_card(700079223) == ""
+```
+
+### `test_widget_get_date`
+Тест вывода даты 
+
+```test_widget_get_date
+def test_widget_get_date():
+    assert get_date("2024-03-11T02:26:18.671407") == "11.03.2024"
+    assert get_date("") == ""
+    assert get_date("11-03-2024") == "11.03.2024"
+```
+
+### `@log()`
+Тестирование логирования, если `filename=None` не указан,
+логи выводятся на консоль 
+
+```@log()
+@log()
+def my_function(x, y):
+    return int(x) + int(y)
+
+my_function(3, 2)
+def test_log_none(capsys):
+    log(my_function(3, 2))
+    captured = capsys.readouterr()
+    assert captured.out == "my_function ok\n"
+```
+А с указанием `filename="mylog.txt"`,
+данные записываются в указанных вайл
+
+```@log(filename="mylog.txt")
+@log(filename="mylog.txt")
+def my_function(x, y):
+    return int(x) + int(y)
+
+my_function(1, 2)
+
+def test_log(capsys):
+    log(my_function(1, 2))
+    captured = capsys.readouterr()
+    assert captured.out == "my_function ok\n"
 ```
