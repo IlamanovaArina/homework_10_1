@@ -22,10 +22,19 @@ def sort_by_date(data: list, sort_by: bool = False):
     задающий порядок сортировки и возвращает новый список,
     отсортированный по дате
     """
+    date_sorted: list = []
+    if data:
+        valid_data = [d for d in data if "date" in d
+                      and isinstance(d["date"], str)]
+        try:
+            date_sorted = sorted(valid_data, key=lambda d: d["date"],
+                                 reverse=sort_by)
+        except ValueError:
+            print("Ошибка: некорректный формат даты")
+    else:
+        date_sorted.append("")
+
+    return date_sorted
 
     sorted_data = sorted(data, key=lambda d: d["date"], reverse=sort_by)
     return sorted_data
-
-
-# print(filter_by_state(user_data, user_state))
-# print(sort_by_date(user_data, true_or_false))
