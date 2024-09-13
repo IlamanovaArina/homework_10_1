@@ -1,3 +1,6 @@
+from tests.test_processing import true_or_false, user_state, user_data
+
+
 def filter_by_state(data: list, state: str = "EXECUTED") -> list:
     """
     Функция принимает список словарей и возвращает новый список словарей,
@@ -19,7 +22,7 @@ def sort_by_date(data: list, sort_by: bool = False):
     задающий порядок сортировки и возвращает новый список,
     отсортированный по дате
     """
-    date_sorted = []
+    date_sorted: list = []
     if data:
         valid_data = [d for d in data if "date" in d
                       and isinstance(d["date"], str)]
@@ -32,3 +35,6 @@ def sort_by_date(data: list, sort_by: bool = False):
         date_sorted.append("")
 
     return date_sorted
+
+    sorted_data = sorted(data, key=lambda d: d["date"], reverse=sort_by)
+    return sorted_data
