@@ -12,7 +12,15 @@ my_function(1, 2)
 def test_log(capsys):
     log(my_function(1, 2))
     captured = capsys.readouterr()
-    assert captured.out == "my_function ok\n"
+    assert captured.out == "my_function ok\n\n"
+
+    log(my_function(2))
+    captured = capsys.readouterr()
+    assert captured.out == "my_function error: TypeError. Inputs: (2,), {}\n\n"
+
+    log(my_function())
+    captured = capsys.readouterr()
+    assert captured.out == "my_function error: TypeError. Inputs: (), {}\n\n"
 
 
 @log()
@@ -24,6 +32,14 @@ my_function(3, 2)
 
 
 def test_log_none(capsys):
-    log(my_function(3, 2))
+    log(my_function(1, 2))
     captured = capsys.readouterr()
-    assert captured.out == "my_function ok\n"
+    assert captured.out == "my_function ok\n\n"
+
+    log(my_function(2))
+    captured = capsys.readouterr()
+    assert captured.out == "my_function error: TypeError. Inputs: (2,), {}\n\n"
+
+    log(my_function())
+    captured = capsys.readouterr()
+    assert captured.out == "my_function error: TypeError. Inputs: (), {}\n\n"

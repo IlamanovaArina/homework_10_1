@@ -6,23 +6,24 @@ def log(filename=None):
     """
     def decorator(func):
         def wrapper(*args, **kwargs):
-            result = func(*args, **kwargs)
             if filename:
                 try:
-                    with open("mylog.txt", "a") as file_1:
-                        file_1.write(f"{func.__name__} ok\n")
-                        print(result)
+                    with open("mylog.txt", "a") as file:
+                        result = func(*args, **kwargs)
+                        file.write(f"{func.__name__} ok\n")
+                        return result
                 except Exception as e:
-                    with open("mylog.txt", "a") as file_2:
-                        file_2.write(f"{func.__name__} error: "
+                    with open("mylog.txt", "a") as file:
+                        file.write(f"{func.__name__} error: "
                                      f"{type(e).__name__}. "
-                                     f"Inputs: {args}, {kwargs}")
+                                     f"Inputs: {args}, {kwargs}\n")
             else:
                 try:
-                    print(f"{func.__name__} ok")
+                    result = func(*args, **kwargs)
+                    print(f"{func.__name__} ok\n")
+                    return result, "1"
                 except Exception as e:
                     print(f"{func.__name__} error: {type(e).__name__}. "
-                          f"Inputs: {args}, {kwargs}")
-                return result
+                          f"Inputs: {args}, {kwargs}\n")
         return wrapper
     return decorator
