@@ -1,5 +1,6 @@
 import json
 import os
+
 import requests
 from dotenv import load_dotenv
 
@@ -28,13 +29,32 @@ def transaction_amount(transaction_data: list) -> float:
                     "apikey": API_KEY,
                 }
 
-            response = requests.get(url, payload)
+            response = requests.get(url, params=payload)
+            print(response.text)
             if response.ok:
                 obj = json.loads(response.text)
                 amount = obj.get("result")
                 return round(amount, 2)
 
-    except Exception:
-        print("Что-то пошло не так")
+    except KeyError:
+        print("Ошибка поиска по ключу")
 
     return 0  # Возвращаем значение по умолчанию
+
+
+a = [
+    {
+        "id": 667307132,
+        "state": "EXECUTED",
+        "date": "2019-07-13T18:51:29.313309",
+        "operationAmount": {
+            "amount": "97853.86",
+            "currency": {"name": "руб.", "code": "RUB"},
+        },
+        "description": "Перевод с карты на счет",
+        "from": "Maestro 1308795367077170",
+        "to": "Счет 96527012349577388612",
+    }
+]
+
+print(transaction_amount(a))

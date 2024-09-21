@@ -1,5 +1,4 @@
 from src.home_11_2.decorators import log
-import pytest
 
 
 @log(filename="mylog.txt")
@@ -20,4 +19,3 @@ def test_log():
     with open("mylog.txt", "r") as file:
         open_file = file.read()
         assert "my_function error: TypeError" in open_file
-
