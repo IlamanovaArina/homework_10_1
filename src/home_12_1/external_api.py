@@ -49,7 +49,7 @@ a = [
         "date": "2019-07-13T18:51:29.313309",
         "operationAmount": {
             "amount": "97853.86",
-            "currency": {"name": "руб.", "code": "RUB"},
+            "currency": {"name": "руб.", "code": "EUR"},
         },
         "description": "Перевод с карты на счет",
         "from": "Maestro 1308795367077170",
