@@ -99,3 +99,24 @@ def stop():
 def file_path_test():
      path = r'C:\Users\minac.DESKTOP-L51PJSH\PycharmProjects\homework_10_1\data\transaction.json'
      return path
+
+
+# @pytest.fixture
+# def utils():
+#     return [
+#     {
+#         "id": 667307132,
+#         "state": "EXECUTED",
+#         "date": "2019-07-13T18:51:29.313309",
+#         "operationAmount": {
+#             "amount": "969.35",
+#             "currency": {"name": "EUR", "code": "EUR"},
+#         },
+#         "description": "Перевод с карты на счет",
+#         "from": "Maestro 1308795367077170",
+#         "to": "Счет 96527012349577388612",
+#     }
+# ]
+
+
+

@@ -9,7 +9,7 @@ def change_json_file(file_path: str) -> list:
     if not file_path:
         return []
     try:
-        with open(file_path, "r", encoding="utf-8", errors="replace") as file:
+        with open(file_path, "r", encoding="utf-8") as file:
             data: list = json.load(file)
             if type(data) != list:
                 return []
