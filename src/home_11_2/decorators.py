@@ -15,8 +15,8 @@ def log(filename=None):
                 except Exception as e:
                     with open("mylog.txt", "a") as file:
                         file.write(f"{func.__name__} error: "
-                                     f"{type(e).__name__}. "
-                                     f"Inputs: {args}, {kwargs}\n")
+                                   f"{type(e).__name__}. "
+                                   f"Inputs: {args}, {kwargs}\n")
             else:
                 try:
                     result = func(*args, **kwargs)
