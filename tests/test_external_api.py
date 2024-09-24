@@ -23,7 +23,7 @@ def test_transaction_amount(mocked_get):
     assert transaction_amount(transaction_data_usd) == 3341.74
 
     mocked_get.assert_called_once_with(
-        "https://api.apilayer.com/currency_data/convert",
+        "https://api.apilayer.com/exchangerates_data/convert",
         params={"amount": 36, "from": "USD", "to": "RUB", "apikey": API_KEY},
     )
 

@@ -20,7 +20,7 @@ def transaction_amount(transaction_data: list) -> float:
         if code == "RUB":
             return amount
         else:
-            url = "https://api.apilayer.com/currency_data/convert"
+            url = "https://api.apilayer.com/exchangerates_data/convert"
             if code == "USD" or code == "EUR":
                 payload = {
                     "amount": amount,
@@ -30,7 +30,6 @@ def transaction_amount(transaction_data: list) -> float:
                 }
 
             response = requests.get(url, params=payload)
-            print(response.text)
             if response.ok:
                 obj = json.loads(response.text)
                 amount = obj.get("result")
@@ -40,21 +39,3 @@ def transaction_amount(transaction_data: list) -> float:
         print("Ошибка поиска по ключу")
 
     return 0  # Возвращаем значение по умолчанию
-
-
-a = [
-    {
-        "id": 667307132,
-        "state": "EXECUTED",
-        "date": "2019-07-13T18:51:29.313309",
-        "operationAmount": {
-            "amount": "97853.86",
-            "currency": {"name": "руб.", "code": "EUR"},
-        },
-        "description": "Перевод с карты на счет",
-        "from": "Maestro 1308795367077170",
-        "to": "Счет 96527012349577388612",
-    }
-]
-
-print(transaction_amount(a))
