@@ -1,20 +1,37 @@
 import json
+import logging
+
+# logging.basicConfig(level=logging.DEBUG,
+#                     format="%(asctime)s %(filename)s %(funcName)s
+#                     %(levelname)s - %(message)s",
+#                     filename=r"C:\Users\minac.DESKTOP-L51PJSH\
+#                     PycharmProjects\homework_10_1\logs.log",
+#                     filemode="w",
+#                     encoding="utf-8"
+#                     )
+
+logg_json_file = logging.getLogger("add.json_file")
 
 
 def change_json_file(file_path: str) -> list:
-    """
-    Функция, которая принимает на вход путь до JSON-файла и
+    """Функция, которая принимает на вход путь до JSON-файла и
     возвращает список словарей с данными о финансовых транзакциях
     """
     if not file_path:
+        logg_json_file.info("Файл пустой")
         return []
     try:
         with open(file_path, "r", encoding="utf-8") as file:
+            logg_json_file.info(f"Открыли файл: {file_path}")
             data: list = json.load(file)
-            if type(data) != list:
+            if type(data) is not list:
+                logg_json_file.error("Не тот формат данных")
                 return []
+            logg_json_file.info("Возвращаю объект Python из Json файла")
             return data
     except FileNotFoundError:
-        return []
+        logg_json_file.error(f"Возникла ошибка: {FileNotFoundError}")
     except PermissionError:
-        print("В доступе отказано")
+        logg_json_file.error(f"Возникла ошибка: {PermissionError}")
+    except Exception as e:
+        logg_json_file.error(f"Возникла ошибка: {e}")
