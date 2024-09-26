@@ -1,17 +1,7 @@
 import json
 import logging
 
-# logging.basicConfig(level=logging.DEBUG,
-#                     format="%(asctime)s %(filename)s %(funcName)s
-#                     %(levelname)s - %(message)s",
-#                     filename=r"C:\Users\minac.DESKTOP-L51PJSH\
-#                     PycharmProjects\homework_10_1\logs.log",
-#                     filemode="w",
-#                     encoding="utf-8"
-#                     )
-
 logg_json_file = logging.getLogger("add.json_file")
-
 
 def change_json_file(file_path: str) -> list:
     """Функция, которая принимает на вход путь до JSON-файла и
