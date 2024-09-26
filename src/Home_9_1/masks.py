@@ -46,7 +46,7 @@ def get_mask_account(card_number: Union[str]) -> Union[str]:
     try:
         if type(card_number) is not str or type(card_number) is bool:
             log_mask_account.info("Получили не тот тип данных.")
-            return "Ошибка"
+            return "Недостаточно цифр"
 
         for d in card_number:
             digit = int(d)
