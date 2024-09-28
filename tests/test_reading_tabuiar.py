@@ -1,14 +1,13 @@
-import pandas as pd
 from unittest.mock import patch, mock_open
 
-from coverage.html import read_data
-from pandas import read_excel
-
-from src.home_13_1.reading_tabular import reading_tables_csv, reading_tables_xlsx
+from src.home_13_1.reading_tabular import (reading_tables_csv,
+                                           reading_tables_xlsx)
 
 
-file_path_csv_ = r"C:\Users\minac.DESKTOP-L51PJSH\PycharmProjects\homework_10_1\data\transactions.csv"
-file_path_xlsx_ = r"C:\Users\minac.DESKTOP-L51PJSH\PycharmProjects\homework_10_1\data\transactions_excel.xlsx"
+file_path_csv_ = (r"C:\Users\minac.DESKTOP-L51PJSH\PycharmProjects"
+                  r"\homework_10_1\data\transactions.csv")
+file_path_xlsx_ = (r"C:\Users\minac.DESKTOP-L51PJSH\PycharmProjects"
+                   r"\homework_10_1\data\transactions_excel.xlsx")
 
 
 @patch("os.path.exists")
@@ -22,9 +21,11 @@ def test_tabular_csv(mocked_dict, mock_csv_exists):
         {"column1": "value3", "column2": "value4"}
     ]
 
-    reader_data = mock_open(read_data="\n".join([";".join(row.values()) for row in data]))
+    reader_data = mock_open(read_data="\n".join(
+        [";".join(row.values()) for row in data]))
 
-    with patch("builtins.open", reader_data), patch("csv.DictReader") as mocked_open:
+    with (patch("builtins.open", reader_data),
+          patch("csv.DictReader")):
         mocked_dict.return_value = data
 
     assert reading_tables_csv(file_path_csv_) == data
@@ -34,7 +35,8 @@ def test_tabular_csv(mocked_dict, mock_csv_exists):
     # mocked_open.assert_called_with(file_path_csv_)
 
     # mocked_open.assert_called_with(
-    # r"C:\Users\minac.DESKTOP-L51PJSH\PycharmProjects\homework_10_1\data\transactions.csv", encoding="utf-8")
+    # r"C:\Users\minac.DESKTOP-L51PJSH\PycharmProjects
+    # \homework_10_1\data\transactions.csv", encoding="utf-8")
 
 
 @patch("pandas.read_excel")

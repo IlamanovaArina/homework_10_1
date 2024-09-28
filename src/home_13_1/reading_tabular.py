@@ -1,22 +1,25 @@
-import pandas as pd
-import logging
 import csv
+import logging
 
+import pandas as pd
 
 logger_csv = logging.getLogger("transaction_csv.log")
 logger_excel = logging.getLogger("transaction_excel.log")
 # handler = logging.FileHandler(filename="logs.log", encoding='utf-8')
-# formatter = logging.Formatter('%(asctime)s %(filename)s %(funcName)s %(levelname)s - %(message)s')
+# formatter = logging.Formatter('%(asctime)s %(filename)s
+# %(funcName)s %(levelname)s - %(message)s')
 # handler.setFormatter(formatter)
 #
 # logger_csv.addHandler(handler)
 # logger_excel.addHandler(handler)
 
 
-file_path_csv_ = r"C:\Users\minac.DESKTOP-L51PJSH\PycharmProjects\homework_10_1\data\transactions.csv"
-file_path_xlsx_ = r"C:\Users\minac.DESKTOP-L51PJSH\PycharmProjects\homework_10_1\data\transactions_excel.xlsx"
+file_path_csv_ = (r"C:\Users\minac.DESKTOP-L51PJSH\PycharmProjects"
+                  r"\homework_10_1\data\transactions.csv")
+file_path_xlsx_ = (r"C:\Users\minac.DESKTOP-L51PJSH\PycharmProjects"
+                   r"\homework_10_1\data\transactions_excel.xlsx")
 
-def reading_tables_csv(file_path_csv):
+def reading_tables_csv(file_path_csv) -> list:
     """Функция которая открывает и читает файлы .csv
     возвращает список словарей
     """
@@ -38,7 +41,7 @@ def reading_tables_csv(file_path_csv):
         logger_csv.error(f"Ошибка: {e}")
 
 
-def reading_tables_xlsx(file_path_xlsx):
+def reading_tables_xlsx(file_path_xlsx) -> list:
     """Чтение Excel файла и вывод как список словарей"""
     try:
         df = pd.read_excel(file_path_xlsx)
