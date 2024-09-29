@@ -5,13 +5,17 @@ import pandas as pd
 
 logger_csv = logging.getLogger("transaction_csv.log")
 logger_excel = logging.getLogger("transaction_excel.log")
-# handler = logging.FileHandler(filename="logs.log", encoding='utf-8')
-# formatter = logging.Formatter('%(asctime)s %(filename)s
-# %(funcName)s %(levelname)s - %(message)s')
-# handler.setFormatter(formatter)
-#
-# logger_csv.addHandler(handler)
-# logger_excel.addHandler(handler)
+logger_csv.setLevel(logging.DEBUG)
+logger_excel.setLevel(logging.DEBUG)
+handler = logging.FileHandler(filename=r"C:\Users\minac.DESKTOP-L51PJSH\PycharmProjects"
+                              r"\homework_10_1\src\home_13_1\logs.log",
+                              encoding='utf-8')
+formatter = logging.Formatter('%(asctime)s %(filename)s'
+                              '%(funcName)s %(levelname)s - %(message)s')
+handler.setFormatter(formatter)
+
+logger_csv.addHandler(handler)
+logger_excel.addHandler(handler)
 
 
 file_path_csv_ = (r"C:\Users\minac.DESKTOP-L51PJSH\PycharmProjects"
