@@ -83,8 +83,8 @@ def get_date(dat: str) -> str:
             return f"{a}.{month}.{c}"
 
 
-e = 'Mastercard 5120967507423143'
-    # 'Счет 80979410926211688985'
+# e = 'Mastercard 5120967507423143'
+# 'Счет 80979410926211688985'
 # 'American Express 1495416283887670'
 # '
 # 'Discover 3332388352371784'
@@ -101,4 +101,4 @@ e = 'Mastercard 5120967507423143'
 # 'Visa 5309985455135498'
 # 'Mastercard 4613141986927768'
 
-print(mask_account_card(e))
+# print(mask_account_card(e))

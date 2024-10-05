@@ -7,12 +7,16 @@ def main(file):
     """
     try:
 
-        print("Привет! Добро пожаловать в программу работы с "
-              "банковскими транзакциями.\n"
-              "Выберите необходимый пункт меню:\n"
-              "1. Получить информацию о транзакциях из JSON-файла\n"
-              "2. Получить информацию о транзакциях из CSV-файла\n"
-              "3. Получить информацию о транзакциях из XLSX-файла")
+        list_data = []
+
+        print(
+            "Привет! Добро пожаловать в программу работы с "
+            "банковскими транзакциями.\n"
+            "Выберите необходимый пункт меню:\n"
+            "1. Получить информацию о транзакциях из JSON-файла\n"
+            "2. Получить информацию о транзакциях из CSV-файла\n"
+            "3. Получить информацию о транзакциях из XLSX-файла"
+        )
 
         file_type = {"1": "JSON-файл", "2": "CSV-файл", "3": "XLSX-файл"}
 
@@ -23,36 +27,45 @@ def main(file):
 
             print(f"Для обработки выбран {file_type.get(file_selection)}")
 
-            if file.endswith('.json'):
-                    from src.home_12_1.utils import change_json_file
+            if file.endswith(".json"):
+                from src.home_12_1.utils import change_json_file
 
-                    # Вызываю функцию для открытья JSON-файл
-                    list_data = change_json_file(file)
+                # Вызываю функцию для открытья JSON-файл
+                list_data = change_json_file(file)
 
-            elif file.endswith('.csv'):
-                    from src.home_13_1.reading_tabular import reading_tables_csv, converting_template
+            elif file.endswith(".csv"):
+                from src.home_13_1.reading_tabular import (
+                    reading_tables_csv,
+                    converting_template,
+                )
 
-                    # Вызываю функцию для открытья CSV-файл
-                    list_data = converting_template(reading_tables_csv(file))
+                # Вызываю функцию для открытья CSV-файл
+                list_data = converting_template(reading_tables_csv(file))
 
-            elif file.endswith('.xlsx'):
-                    from src.home_13_1.reading_tabular import reading_tables_xlsx, converting_template
+            elif file.endswith(".xlsx"):
+                from src.home_13_1.reading_tabular import (
+                    reading_tables_xlsx,
+                    converting_template,
+                )
 
-                    # Вызываю функцию для открытья XLSX-файл
-                    list_data = converting_template(reading_tables_xlsx(file))
-
+                # Вызываю функцию для открытья XLSX-файл
+                list_data = converting_template(reading_tables_xlsx(file))
 
         else:
-            print("Такой программы не найдено.\n"
-                    "Выберите необходимый пункт меню:\n"
-                    "1. Получить информацию о транзакциях из JSON-файла\n"
-                    "2. Получить информацию о транзакциях из CSV-файла\n"
-                    "3. Получить информацию о транзакциях из XLSX-файла")
+            print(
+                "Такой программы не найдено.\n"
+                "Выберите необходимый пункт меню:\n"
+                "1. Получить информацию о транзакциях из JSON-файла\n"
+                "2. Получить информацию о транзакциях из CSV-файла\n"
+                "3. Получить информацию о транзакциях из XLSX-файла"
+            )
 
-        print("Введите статус, по которому необходимо выполнить фильтрацию.\n"
-              "Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING")
+        print(
+            "Введите статус, по которому необходимо выполнить фильтрацию.\n"
+            "Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING"
+        )
 
-        sorting_method = ['EXECUTED', 'CANCELED', 'PENDING']
+        sorting_method = ["EXECUTED", "CANCELED", "PENDING"]
         choice = input().upper()  # выбор пользователя для фильтрации
 
         if choice in sorting_method:
@@ -97,10 +110,11 @@ def main(file):
             from src.home_11_1.generators import filter_by_currency
 
             #
-            list_data = filter_by_currency(list_data, 'RUB')
+            list_data = filter_by_currency(list_data, "RUB")
 
-        print("Отфильтровать список транзакций по "
-              "определенному слову в описании? Да/Нет")
+        print(
+            "Отфильтровать список транзакций по " "определенному слову в описании? Да/Нет"
+        )
 
         answer_search_word = input().lower()
 
@@ -114,7 +128,12 @@ def main(file):
             list_data = search_for_transaction_data(list_data, search)
 
         print("Распечатываю итоговый список транзакций...\n")
-        print(f"Всего банковских операций в выборке: {len(list_data)}\n")
+        if len(list_data) == 0:
+            return "Не найдено ни одной транзакции, подходящей под ваши условия фильтрации"
+
+        else:
+
+            print(f"Всего банковских операций в выборке: {len(list_data)}\n")
 
         from src.Home_9_2.widget import get_date, mask_account_card
 
@@ -123,28 +142,33 @@ def main(file):
             # получаю дату нужного формата
             data = get_date(transaction["date"])
 
+
             if transaction["from"]:
                 mask_from = mask_account_card(transaction["from"])
                 mask_to = mask_account_card(transaction["to"])
 
-                print(f"\n{data} {transaction['description']}\n"
-                        f"{mask_from} -> "
-                        f"{mask_to}\n"
-                        f"Сумма: {transaction["operationAmount"]["amount"]} "
-                        f"{transaction["operationAmount"]["currency"]["code"]}")
+                print(
+                    f"\n{data} {transaction['description']}\n"
+                    f"{mask_from} -> "
+                    f"{mask_to}\n"
+                    f"Сумма: {transaction["operationAmount"]["amount"]} "
+                    f"{transaction["operationAmount"]["currency"]["code"]}"
+                )
             else:
                 mask_to = mask_account_card(transaction["to"])
 
-                print(f"\n{data} {transaction['description']}\n"
-                        f"{mask_to}\n"
-                        f"Сумма: {transaction["operationAmount"]["amount"]} "
-                        f"{transaction["operationAmount"]["currency"]["code"]}")
-        return
+                print(
+                    f"\n{data} {transaction['description']}\n"
+                    f"{mask_to}\n"
+                    f"Сумма: {transaction["operationAmount"]["amount"]} "
+                    f"{transaction["operationAmount"]["currency"]["code"]}"
+                )
 
     except Exception as er:
         return f"Ошибка {er}"
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     e = r"C:\Users\minac.DESKTOP-L51PJSH\PycharmProjects\homework_10_1\data\operations.json"
     a = r"C:\Users\minac.DESKTOP-L51PJSH\PycharmProjects\homework_10_1"
     s = os.path.join(a, "data", "transactions_excel.xlsx")
