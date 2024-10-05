@@ -1,7 +1,7 @@
 import re
 from typing import Union
 
-from src.data import acceptable_data, numbers
+from src.data import numbers
 from src.Home_9_1.masks import get_mask_account, get_mask_card_number
 
 

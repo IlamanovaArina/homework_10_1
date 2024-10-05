@@ -3,7 +3,7 @@ from collections import namedtuple
 
 
 def search_for_transaction_data(transaction_data: list, search: str) -> list:
-    """Функция, которая принимает список словарей
+    """Функция, принимает список словарей
     с данными о банковских операциях и строку поиска,
     а возвращать список словарей, у которых в описании есть данная строка.
     """
@@ -23,9 +23,8 @@ def search_for_transaction_data(transaction_data: list, search: str) -> list:
 
 
 def search_by_category(transactions: list, categories: list) -> dict:
-    """Функция, которая принимает список словарей
-    с данными о банковских операциях,
-    список категорий операций,
+    """Функция, принимает список словарей
+    с данными о банковских операциях, список категорий операций,
     а возвращать словарь, в котором ключи — это названия категорий,
     а значения — это количество операций в каждой категории.
     Категории операций хранятся в поле description
@@ -45,60 +44,34 @@ def search_by_category(transactions: list, categories: list) -> dict:
         return {}
 
 
-
-transaction_ = [{
-    "id": 939719570,
-    "state": "EXECUTED",
-    "date": "2018-06-30T02:08:58.425572",
-    "operationAmount": {
-        "amount": "9824.07",
-        "currency": {"name": "USD", "code": "USD"},
-    },
-    "description": "Перевод организации",
-    "from": "Счет 75106830613657916952",
-    "to": "Счет 11776614605963066702",
-},
-    {
-        "id": 939719571,
-        "state": "EXECUTED",
-        "date": "2019-06-30T02:08:58.425573",
-        "operationAmount": {
-            "amount": "9824.07",
-            "currency": {"name": "USD", "code": "USD"},
-        },
-        "description": "Перевод организации",
-        "from": "Счет 75106830613657916953",
-        "to": "Счет 11776614605963066703",
-    },
-    {
-        "id": 939719570,
-        "state": "EXECUTED",
-        "date": "2018-06-30T02:08:58.425572",
-        "operationAmount": {
-            "amount": "9824.07",
-            "currency": {"name": "USD", "code": "USD"},
-        },
-        "description": "Покупка",
-        "from": "Счет 75106830613657916952",
-        "to": "Счет 11776614605963066702",
-    },
-    {
-        "id": 939719571,
-        "state": "EXECUTED",
-        "date": "2019-06-30T02:08:58.425573",
-        "operationAmount": {
-            "amount": "9824.07",
-            "currency": {"name": "USD", "code": "USD"},
-        },
-        "description": "Перевод ЮР-лицу",
-        "from": "Счет 75106830613657916953",
-        "to": "Счет 11776614605963066703",
-    }]
-
-dikt = ["Перевод организации", "Перевод ЮР-лицу", "Покупка"]
-
-
-if __name__ == '__main__':
-    print(search_for_transaction_data(transaction_, "перевод"))
-    # print(search_by_category(transaction_, dikt))
-
+# transaction_ = [{
+#     "id": 939719570,
+#     "state": "EXECUTED",
+#     "date": "2018-06-30T02:08:58.425572",
+#     "operationAmount": {
+#         "amount": "9824.07",
+#         "currency": {"name": "USD", "code": "USD"},
+#     },
+#     "description": "Перевод организации",
+#     "from": "Счет 75106830613657916952",
+#     "to": "Счет 11776614605963066702",
+# },
+#     {
+#         "id": 939719571,
+#         "state": "EXECUTED",
+#         "date": "2019-06-30T02:08:58.425573",
+#         "operationAmount": {
+#             "amount": "9824.07",
+#             "currency": {"name": "USD", "code": "USD"},
+#         },
+#         "description": "Перевод организации",
+#         "from": "Счет 75106830613657916953",
+#         "to": "Счет 11776614605963066703"
+#     }]
+#
+# dikt = ["Перевод организации", "Перевод ЮР-лицу", "Покупка"]
+#
+#
+# if __name__ == '__main__':
+#     print(search_for_transaction_data(transaction_, "перевод"))
+#     print(search_by_category(transaction_, dikt))

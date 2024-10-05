@@ -1,38 +1,8 @@
-import pytest
-
-from tests.test_masks import test_masks
-from tests.test_widget import test_widget_get_date, test_widget_mask_account_card
-from tests.test_generators import test_filter_by_currency
+from src.home_13_2.search import search_for_transaction_data, search_by_category
 
 
-@pytest.fixture
-def bank_card():
-    return test_widget_mask_account_card
-
-
-@pytest.fixture
-def dat():
-    return test_widget_get_date
-
-
-@pytest.fixture
-def card_number():
-    return test_masks
-
-
-@pytest.fixture
-def list_transaction():
-    return test_filter_by_currency
-
-
-@pytest.fixture
-def required_currency():
-    return test_filter_by_currency
-
-
-@pytest.fixture
-def list_transactions():
-    transaction = [
+def test_search_for_transaction_data(list_transactions):
+    assert search_for_transaction_data(list_transactions, "перевод") == [
         {
             "id": 939719570,
             "state": "EXECUTED",
@@ -82,24 +52,9 @@ def list_transactions():
             "to": "Счет 11776614605963066703",
         },
     ]
-    return transaction
 
 
-@pytest.fixture
-def start():
-    return "0000 0000 0000 0001"
+def test_search_by_category(list_transactions):
+    dikt = ["Перевод организации", "Перевод ЮР-лицу", "Покупка"]
 
-
-@pytest.fixture
-def stop():
-    return "9999 9999 9999 9999"
-
-
-@pytest.fixture
-def file_path_test():
-     path = r'C:\Users\minac.DESKTOP-L51PJSH\PycharmProjects\homework_10_1\data\transaction.json'
-     return path
-
-
-# @pytest.fixture
-# def
+    assert search_by_category(list_transactions, dikt)
