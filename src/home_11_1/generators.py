@@ -1,16 +1,15 @@
-def filter_by_currency(list_transactions, currency):
+def filter_by_currency(list_transactions: list, currency: str) -> list:
     """Фильтрует банковские операции по заданной валюте"""
     if len(list_transactions) > 0:
-        filtered_transactions = filter(
-            lambda list_transactions: list_transactions.get("operationAmount")
-            .get("currency")
-            .get("code")
-            == currency,
-            list_transactions,
-        )
+        filtered_transactions = list(filter(
+            lambda list_transaction: (list_transaction
+                                      .get("operationAmount")
+                                      .get("currency" or "currency_name")
+                                      .get("code" or "currency_code") ==
+                                      currency), list_transactions))
         return filtered_transactions
     else:
-        return "Список пустой"
+        return []
 
 
 def transaction_descriptions(list_transactions):

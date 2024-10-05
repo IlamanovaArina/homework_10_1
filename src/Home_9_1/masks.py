@@ -8,7 +8,7 @@ log_mask_account = logging.getLogger("add.mask_account")
 
 
 def get_mask_card_number(card_number: str) -> str:
-    """Функция которая принимает номер карты в виде целого числа(str)
+    """Функция каторая принимает номер карты в виде целого числа(str)
     и возвращяет маскированный номер кары(str)
     """
     list_digit: Union[list] = []
@@ -39,7 +39,7 @@ def get_mask_card_number(card_number: str) -> str:
 
 def get_mask_account(card_number: Union[str]) -> Union[str]:
     """
-    Функция которая принимает номер каты
+    Функция каторая принимает номер каты
     и возвращает маску ввиде две '*' и 4 цифры
     """
     list_digit: Union[list] = []

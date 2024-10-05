@@ -7,7 +7,7 @@
       "amount": "97853.86",
       "currency": {
         "name": "руб.",
-        "code": "RUB"
+        "currency_code": "RUB"
       }
     },
     "description": "Перевод с карты на счет",

@@ -31,8 +31,8 @@ file_path_xlsx_ = (
 )
 
 
-def reading_tables_csv(file_path_csv) -> list:
-    """Функция которая открывает и читает файлы .csv
+def reading_tables_csv(file_path_csv: str) -> list:
+    """Функция открывает и читает файлы .csv
     возвращает список словарей
     """
     try:
@@ -53,7 +53,7 @@ def reading_tables_csv(file_path_csv) -> list:
         logger_csv.error(f"Ошибка: {e}")
 
 
-def reading_tables_xlsx(file_path_xlsx) -> list:
+def reading_tables_xlsx(file_path_xlsx: str) -> list:
     """Чтение Excel файла и вывод как список словарей"""
     try:
         df = pd.read_excel(file_path_xlsx)
