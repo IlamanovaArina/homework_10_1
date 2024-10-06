@@ -11,7 +11,7 @@ def get_mask_card_number(card_number: str) -> str:
     """Функция каторая принимает номер карты в виде целого числа(str)
     и возвращяет маскированный номер кары(str)
     """
-    list_digit: Union[list] = []
+    list_digit: list = []
 
     if type(card_number) is not str or type(card_number) is bool:
         log_masks.info("Получили не тот тип данных.")

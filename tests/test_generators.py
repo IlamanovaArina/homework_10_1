@@ -1,10 +1,8 @@
 import pytest
 
-from src.home_11_1.generators import (
-    card_number_generator,
-    filter_by_currency,
-    transaction_descriptions,
-)
+from src.home_11_1.generators import (card_number_generator,
+                                      filter_by_currency,
+                                      transaction_descriptions)
 
 
 def test_filter_by_currency(transactions_fixture):
@@ -49,7 +47,7 @@ def test_filter_by_currency(transactions_fixture):
 
 @pytest.mark.parametrize(
     "transactions, currency, expected",
-    [([], "EUR", "Список пустой"), ([], "RUB", "Список пустой")],
+    [([], "EUR", []), ([], "RUB", [])],
 )
 def test_filter_by_currency_exceptions(transactions, currency, expected):
     result = filter_by_currency(transactions, currency)

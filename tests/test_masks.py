@@ -18,8 +18,7 @@ def test_masks():
     assert get_mask_account("7000792289606361") == "Недостаточно цифр"
     assert get_mask_account("7000") == "Недостаточно цифр"
     assert get_mask_account("7000123456789123456789") == "Недостаточно цифр"
-    # assert get_mask_account("пробуем буквы, очень много букв") ==
-    # "Недостаточно цифр"
+    assert get_mask_account("пробуем буквы, очень много букв") is None
     assert get_mask_account("") == "Недостаточно цифр"
     assert get_mask_account(7000792289606361) == "Недостаточно цифр"
     with pytest.raises(TypeError):

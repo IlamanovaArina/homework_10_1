@@ -1,4 +1,4 @@
-from unittest.mock import patch, mock_open
+from unittest.mock import mock_open, patch
 
 from src.home_13_1.reading_tabular import (reading_tables_csv,
                                            reading_tables_xlsx)

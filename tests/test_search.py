@@ -1,4 +1,5 @@
-from src.home_13_2.search import search_for_transaction_data, search_by_category
+from src.home_13_2.search import (search_by_category,
+                                  search_for_transaction_data)
 
 
 def test_search_for_transaction_data(list_transactions):

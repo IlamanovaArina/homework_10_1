@@ -1,6 +1,3 @@
-import os
-
-
 def main(file):
     """Функция, которая отвечает за основную логику проекта
     и связывает функциональности между собой
@@ -36,9 +33,7 @@ def main(file):
 
                 elif file.endswith(".csv"):
                     from src.home_13_1.reading_tabular import (
-                        reading_tables_csv,
-                        converting_template,
-                    )
+                        converting_template, reading_tables_csv)
 
                     # Вызываю функцию для открытья CSV-файл
                     list_data = converting_template(reading_tables_csv(file))
@@ -46,9 +41,7 @@ def main(file):
 
                 elif file.endswith(".xlsx"):
                     from src.home_13_1.reading_tabular import (
-                        reading_tables_xlsx,
-                        converting_template,
-                    )
+                        converting_template, reading_tables_xlsx)
 
                     # Вызываю функцию для открытья XLSX-файл
                     list_data = converting_template(reading_tables_xlsx(file))
