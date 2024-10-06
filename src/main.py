@@ -8,7 +8,6 @@ def main(file):
     try:
 
         list_data = []
-
         print(
             "Привет! Добро пожаловать в программу работы с "
             "банковскими транзакциями.\n"
@@ -17,49 +16,53 @@ def main(file):
             "2. Получить информацию о транзакциях из CSV-файла\n"
             "3. Получить информацию о транзакциях из XLSX-файла"
         )
+        while True:
 
-        file_type = {"1": "JSON-файл", "2": "CSV-файл", "3": "XLSX-файл"}
+            file_type = {"1": "JSON-файл", "2": "CSV-файл", "3": "XLSX-файл"}
 
-        # пользователь выбирает с каким файлом работать
-        file_selection: str = input().lower()
+            # пользователь выбирает с каким файлом работать
+            file_selection: str = input().lower()
 
-        if str(file_selection) in file_type:
+            if str(file_selection) in file_type:
 
-            print(f"Для обработки выбран {file_type.get(file_selection)}")
+                print(f"Для обработки выбран {file_type.get(file_selection)}")
 
-            if file.endswith(".json"):
-                from src.home_12_1.utils import change_json_file
+                if file.endswith(".json"):
+                    from src.home_12_1.utils import change_json_file
 
-                # Вызываю функцию для открытья JSON-файл
-                list_data = change_json_file(file)
+                    # Вызываю функцию для открытья JSON-файл
+                    list_data = change_json_file(file)
+                    break
 
-            elif file.endswith(".csv"):
-                from src.home_13_1.reading_tabular import (
-                    reading_tables_csv,
-                    converting_template,
+                elif file.endswith(".csv"):
+                    from src.home_13_1.reading_tabular import (
+                        reading_tables_csv,
+                        converting_template,
+                    )
+
+                    # Вызываю функцию для открытья CSV-файл
+                    list_data = converting_template(reading_tables_csv(file))
+                    break
+
+                elif file.endswith(".xlsx"):
+                    from src.home_13_1.reading_tabular import (
+                        reading_tables_xlsx,
+                        converting_template,
+                    )
+
+                    # Вызываю функцию для открытья XLSX-файл
+                    list_data = converting_template(reading_tables_xlsx(file))
+                    break
+
+            else:
+                print(
+                    "Неверный выбор."
+                    "Выберите необходимый пункт меню:\n"
+                    "1. Получить информацию о транзакциях из JSON-файла\n"
+                    "2. Получить информацию о транзакциях из CSV-файла\n"
+                    "3. Получить информацию о транзакциях из XLSX-файла"
                 )
-
-                # Вызываю функцию для открытья CSV-файл
-                list_data = converting_template(reading_tables_csv(file))
-
-            elif file.endswith(".xlsx"):
-                from src.home_13_1.reading_tabular import (
-                    reading_tables_xlsx,
-                    converting_template,
-                )
-
-                # Вызываю функцию для открытья XLSX-файл
-                list_data = converting_template(reading_tables_xlsx(file))
-
-        else:
-            print(
-                "Такой программы не найдено.\n"
-                "Выберите необходимый пункт меню:\n"
-                "1. Получить информацию о транзакциях из JSON-файла\n"
-                "2. Получить информацию о транзакциях из CSV-файла\n"
-                "3. Получить информацию о транзакциях из XLSX-файла"
-            )
-
+                continue
         print(
             "Введите статус, по которому необходимо выполнить фильтрацию.\n"
             "Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING"
@@ -113,7 +116,8 @@ def main(file):
             list_data = filter_by_currency(list_data, "RUB")
 
         print(
-            "Отфильтровать список транзакций по " "определенному слову в описании? Да/Нет"
+            "Отфильтровать список транзакций по "
+            "определенному слову в описании? Да/Нет"
         )
 
         answer_search_word = input().lower()
@@ -129,7 +133,10 @@ def main(file):
 
         print("Распечатываю итоговый список транзакций...\n")
         if len(list_data) == 0:
-            return "Не найдено ни одной транзакции, подходящей под ваши условия фильтрации"
+            return (
+                "Не найдено ни одной транзакции, "
+                "подходящей под ваши условия фильтрации"
+            )
 
         else:
 
@@ -141,7 +148,6 @@ def main(file):
 
             # получаю дату нужного формата
             data = get_date(transaction["date"])
-
 
             if transaction["from"]:
                 mask_from = mask_account_card(transaction["from"])
@@ -163,14 +169,7 @@ def main(file):
                     f"Сумма: {transaction["operationAmount"]["amount"]} "
                     f"{transaction["operationAmount"]["currency"]["code"]}"
                 )
+        return "\nСпасибо, что воспользовались нашими услугами;)"
 
     except Exception as er:
         return f"Ошибка {er}"
-
-
-if __name__ == "__main__":
-    e = r"C:\Users\minac.DESKTOP-L51PJSH\PycharmProjects\homework_10_1\data\operations.json"
-    a = r"C:\Users\minac.DESKTOP-L51PJSH\PycharmProjects\homework_10_1"
-    s = os.path.join(a, "data", "transactions_excel.xlsx")
-    b = os.path.join(a, "data", "transactions.csv")
-    print(main(s))

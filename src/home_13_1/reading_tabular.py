@@ -9,7 +9,7 @@ logger_csv.setLevel(logging.DEBUG)
 logger_excel.setLevel(logging.DEBUG)
 handler = logging.FileHandler(
     filename=r"C:\Users\minac.DESKTOP-L51PJSH\PycharmProjects"
-             r"\homework_10_1\src\home_13_1\logs.log",
+    r"\homework_10_1\src\home_13_1\logs.log",
     encoding="utf-8",
 )
 formatter = logging.Formatter(
@@ -84,7 +84,10 @@ def converting_template(l_transactions: list) -> list:
             "date": dict_["date"],
             "operationAmount": {
                 "amount": dict_["amount"],
-                "currency": {"name": dict_["currency_name"], "code": dict_["currency_code"]},
+                "currency": {
+                    "name": dict_["currency_name"],
+                    "code": dict_["currency_code"],
+                },
             },
             "description": dict_["description"],
             "from": dict_["from"],
@@ -92,23 +95,3 @@ def converting_template(l_transactions: list) -> list:
         }
         transactions.append(s)
     return transactions
-
-
-a = [{'id': '4361453', 'state': 'EXECUTED', 'date': '2021-12-05T01:35:38Z', 'amount': '30045',
-      'currency_name': 'Yuan Renminbi', 'currency_code': 'CNY', 'from': 'Mastercard 3665700271480451',
-      'to': 'American Express 0562165846839124', 'description': 'Перевод с карты на карту'},
-     {'id': '413942', 'state': 'EXECUTED', 'date': '2023-01-14T17:09:31Z', 'amount': '30885', 'currency_name': 'Zloty',
-      'currency_code': 'PLN', 'from': '', 'to': 'Счет 14333875659976842245', 'description': 'Открытие вклада'},
-     {'id': '3034414', 'state': 'EXECUTED', 'date': '2020-05-17T04:31:24Z', 'amount': '14490',
-      'currency_name': 'Rupiah', 'currency_code': 'IDR', 'from': 'Mastercard 5542284288235939',
-      'to': 'Discover 6909942117751005', 'description': 'Перевод с карты на карту'},
-     {'id': '595305', 'state': 'PENDING', 'date': '2023-08-22T17:20:18Z', 'amount': '22624', 'currency_name': 'Euro',
-      'currency_code': 'EUR', 'from': '', 'to': 'Счет 97565556730475585217', 'description': 'Открытие вклада'},
-     {'id': '2415946', 'state': 'EXECUTED', 'date': '2020-10-28T08:59:58Z', 'amount': '23190', 'currency_name': 'Kuna',
-      'currency_code': 'HRK', 'from': 'Visa 2130676513423745', 'to': 'Счет 65656300853632903109',
-      'description': 'Перевод организации'},
-     {'id': '3330422', 'state': 'EXECUTED', 'date': '2023-08-05T07:11:26Z', 'amount': '30065', 'currency_name': 'Ruble',
-      'currency_code': 'RUB', 'from': 'Mastercard 9458117363112215', 'to': 'Visa 6335859532296628',
-      'description': 'Перевод с карты на карту'}
-     ]
-print(converting_template(a))

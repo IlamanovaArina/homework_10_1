@@ -56,7 +56,7 @@ def get_mask_account(card_number: Union[str]) -> Union[str]:
 
         if len(list_digit) == 20:
             log_mask_account.info("Маскируем номер счёта")
-            list_digit[:-4] = ['*', '*']
+            list_digit[:-4] = ["*", "*"]
         else:
             log_mask_account.error("Ввели короткий номер счёта, "
                                    "недостаточно цифр")

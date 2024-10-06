@@ -30,7 +30,7 @@ def search_by_category(transactions: list, categories: list) -> dict:
     Категории операций хранятся в поле description
     """
     try:
-        Point = namedtuple('Point', ['description', 'operations'])
+        Point = namedtuple("Point", ["description", "operations"])
         description = []
         for transaction in transactions:
             if transaction.get("description") in categories:
